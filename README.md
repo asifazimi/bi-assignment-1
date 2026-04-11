@@ -1,4 +1,4 @@
-# 📊 [Project Title – To Be Decided]
+# 📊 [Project Title – Games]
 
 ## 👥 Team Members
 
@@ -16,76 +16,124 @@ This project is part of the _Business Intelligence 1_ course at the University o
 
 The goal is to go through the full BI pipeline:
 
-- Define analytical questions
-- Collect and integrate datasets
-- Design a data model (star schema)
+- Define analytical questions ✅ (Completed)
+- Design ER model (3NF) and Star Schema
 - Build a data processing pipeline
 - Create a Tableau dashboard
 - Extract meaningful insights
+- Presentation & report
 
 ---
 
 ## 📌 Topic Description
 
-We analyze how different lifestyle factors of students influence their academic performance. -> Just an example
+This project analyzes **video game success and player engagement** using data from multiple sources.
 
-The project focuses on understanding relationships between:
+We combine:
 
-- study time
-- sleep duration
-- social activities
-- health and habits
-
-and how these factors affect student grades.
-
-This topic is relevant because it can provide insights into how students can improve their academic outcomes by adjusting their daily habits.
+- **Steam dataset** → business performance (price, owners, peak players)
+- **RAWG dataset** → user perception (ratings, reviews, popularity)
 
 ---
 
 ## ❓ Analytical Questions
 
-1. How does study time affect student performance?
-2. Does sleep duration influence grades?
-3. How do social activities (e.g., going out) impact academic results?
-4. Are there differences in performance across demographic factors (e.g., age, gender)?
-5. What combination of factors leads to the best academic outcomes?
+### 1. How does game price affect popularity and engagement?
+
+**Columns used:**
+
+- Steam: `price`
+- RAWG: `rating`, `ratings_count`
+
+---
+
+### 2. Are highly rated games always widely recognized?
+
+**Columns used:**
+
+- RAWG: `rating`, `ratings_count`, `suggestions_count`
+
+👉 Goal: Identify high-quality but less popular (hidden gem) games
+
+---
+
+### 3. Do multi-platform games perform better than PC-only games?
+
+**Columns used:**
+
+- RAWG: `platforms`
+- Steam: `average`, `median`
+- ***
+
+### 4. Do higher Metacritic scores lead to higher popularity?
+
+**Columns used:**
+
+- RAWG: `metacritic`, `user score`
+- Steam: `twitch`
+
+---
+
+### 5. Which game genres have grown the most over time?
+
+**Columns used:**
+
+- RAWG: `genres`, `released`
+- Steam: `release_date`
+
+👉 Measure:
+
+- Number of games per genre per year
 
 ---
 
 ## 📂 Datasets
 
-We will use at least two datasets.
+We use two main datasets from Kaggle:
 
-### Dataset 1 – Student Performance
+### Dataset 1 – Steam Games Dataset
 
-- Source: Kaggle
-- Description: Contains student grades and academic-related attributes
+- Contains information about games available on Steam
 - Key attributes:
-  - final grade
-  - study time
-  - absences
-  - school
+  - `app_id`
+  - `name`
+  - `release_date`
+  - `price`
+  - `estimated_owners`
+  - `peak_ccu`
+  - `dlc_count`
 
-### Dataset 2 – Student Lifestyle / Habits
+---
 
-- Source: Kaggle
-- Description: Contains lifestyle-related information
+### Dataset 2 – RAWG Games Dataset
+
+- Contains aggregated game ratings and metadata
 - Key attributes:
-  - sleep duration
-  - daily activities
-  - social behavior
-  - health indicators
+  - `id`
+  - `name`
+  - `released`
+  - `rating`
+  - `ratings_count`
+  - `reviews_text_count`
+  - `suggestions_count`
+  - `metacritic`
+  - `platforms`
+  - `genres`
 
 ---
 
 ### 🔗 Data Connection
 
-The datasets will be connected using shared attributes such as:
+Datasets will be connected using:
 
-- student ID (if available), or
-- derived grouping (e.g., categories like study time, age group)
+- `name` (game title)
 
-If no direct key exists, we will align datasets at an aggregated level.
+⚠️ Note:
+
+- Names may differ slightly → preprocessing required:
+  - lowercase conversion
+  - removing special characters
+  - trimming spaces
 
 ---
 
@@ -95,70 +143,84 @@ If no direct key exists, we will align datasets at an aggregated level.
 
 One row represents:
 
-> A student's academic performance under specific lifestyle conditions
+> A single game with its performance and engagement metrics
 
-Measures:
+**Measures:**
 
-- final grade (primary measure)
-- absences (optional)
+- `estimated_owners`
+- `peak_ccu`
+- `rating`
+- `ratings_count`
+- `suggestions_count`
 
 ---
 
 ### 🔹 Dimensions
 
-- 📅 Date (if applicable or derived)
-- Study Time
-- Sleep Duration
-- Social Activity Level
-- Demographics (age, gender, etc.)
+- 📅 Date (release year, month)
+- 🎮 Game (name, id)
+- 🏷️ Genre
+- 💻 Platform
+- 💰 Price category (derived: low / medium / high)
 
 ---
 
 ### ⭐ Star Schema
 
-- Fact table: Student Performance
+- Fact table: Game Performance
 - Dimension tables:
-  - Student
-  - Lifestyle
-  - Time (optional)
-  - Demographics
+  - Game
+  - Date
+  - Genre
+  - Platform
+  - Price Category
 
 ---
 
 ## ⚙️ Data Processing Pipeline
 
-We will implement a pipeline in Python.
+Implemented in Python.
 
 ### 🔄 Data Transformation
 
 - Select relevant columns
-- Convert categorical values
-- Create derived features (e.g., grouped study time)
+- Convert data types (dates, numeric)
+- Create derived features:
+  - release year
+  - price categories
+
+---
 
 ### 🔗 Data Integration
 
-- Merge datasets based on shared attributes or categories
+- Merge Steam and RAWG datasets using cleaned game names
+
+---
 
 ### 🧹 Data Cleaning
 
 - Handle missing values
-- Normalize inconsistent values
+- Normalize inconsistent naming
+- Remove duplicates
+
+---
 
 ### 📤 Output
 
-- Clean dataset(s) structured as a star schema
+- Clean dataset structured in star schema format
 - Ready for Tableau
 
 ---
 
 ## 📊 Data Analytics (Tableau)
 
-We will build a dashboard that includes:
+Dashboard will include:
 
-- Study time vs grades (bar/line chart)
-- Sleep vs performance (scatter plot)
-- Social activity vs grades
-- Filters for demographics
+- Price vs popularity (scatter plot)
+- Ratings vs owners (correlation)
+- Genre trends over time (line chart)
+- Platform comparison (bar chart)
+- Filters (genre, year, platform)
 
 ---
 
@@ -176,13 +238,62 @@ We will build a dashboard that includes:
 
 ---
 
-## 📅 Timeline
+## 📅 Timeline & Task Assignment
 
-- Topic & datasets selection: ASAP
-- Data modeling: Week 1
-- Data processing: Week 2
-- Dashboard creation: Week 3
-- Final presentation: May 15, 2026
+### Week 1 – Data Modeling
+
+**Tasks:**
+
+- ER model (3NF)
+- Star schema design
+
+**Assigned to:**
+
+- Dogu Nelin Icimsu
+- Ilic Marko
+
+---
+
+### Week 2 – Data Processing Pipeline
+
+**Tasks:**
+
+- Data cleaning
+- Data transformation
+- Data integration
+
+**Assigned to:**
+
+- Salman Muhammad
+- Rehman Zia Ur
+
+---
+
+### Week 3 – Dashboard & Visualization
+
+**Tasks:**
+
+- Build Tableau dashboard
+- Create visualizations for all analytical questions
+
+**Assigned to:**
+
+- Azimi Mohammad Asif
+- Salman Muhammad
+- Rehman Zia Ur
+- Dogu Nelin Icimsu
+- Ilic Marko
+
+---
+
+### Final Stage
+
+**Tasks:**
+
+- Extract insights
+- Prepare presentation & report
+
+**All members involved**
 
 ---
 
