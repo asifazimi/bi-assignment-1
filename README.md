@@ -38,7 +38,7 @@ We combine:
 
 ## ❓ Analytical Questions
 
-### 1. How does game price affect popularity and engagement?
+### 1. How does game price affect user rating of the game?
 
 **Columns used:**
 
@@ -47,7 +47,7 @@ We combine:
 
 ---
 
-### 2. Are highly rated games always widely recognized?
+### 2. Are highly rated games always suggested more than lower rated games?
 
 **Columns used:**
 
@@ -57,7 +57,7 @@ We combine:
 
 ---
 
-### 3. Do multi-platform games perform better than PC-only games?
+### 3. Do multi-platform games have more playing time than PC-only games?
 
 **Columns used:**
 
@@ -69,7 +69,7 @@ We combine:
 
 **Columns used:**
 
-- RAWG: `metacritic`, `user score`
+- RAWG: `metacritic`
 - Steam: `twitch`
 
 ---
