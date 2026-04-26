@@ -168,6 +168,7 @@ One row represents a single game's measurable performance.
 
 ### Star Schema
 
+![Star Schema](https://github-production-user-asset-6210df.s3.amazonaws.com/31056603/583907402-7fccbbc4-9207-4a25-9880-b7b3d2d9b59a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260426%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260426T192531Z&X-Amz-Expires=300&X-Amz-Signature=cd0c8a878fcbb72cc2736098a71e707eb9a89380dbbf529e9d1426d16c241221&X-Amz-SignedHeaders=host&response-content-type=image%2Fpng)
 
 - Fact table: FactGame
 - Dimension tables: DimGame, DimDate, DimGenre
