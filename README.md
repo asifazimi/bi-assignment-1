@@ -1,6 +1,6 @@
-# 📊 [Project Title – Games]
+# Project Title – Games
 
-## 👥 Team Members
+## Team Members
 
 - Dogu Nelin Icimsu
 - Ilic Marko
@@ -10,13 +10,13 @@
 
 ---
 
-## 🎯 Project Goal
+## Project Goal
 
 This project is part of the _Business Intelligence 1_ course at the University of Vienna.
 
 The goal is to go through the full BI pipeline:
 
-- Define analytical questions ✅ (Completed)
+- Define analytical questions (Completed)
 - Design ER model (3NF) and Star Schema
 - Build a data processing pipeline
 - Create a Tableau dashboard
@@ -25,18 +25,18 @@ The goal is to go through the full BI pipeline:
 
 ---
 
-## 📌 Topic Description
+## Topic Description
 
 This project analyzes **video game success and player engagement** using data from multiple sources.
 
 We combine:
 
-- **Steam dataset** → business performance (price, owners, peak players)
-- **RAWG dataset** → user perception (ratings, reviews, popularity)
+- **Steam dataset** -> business performance (price, owners, peak players)
+- **RAWG dataset** -> user perception (ratings, reviews, popularity)
 
 ---
 
-## ❓ Analytical Questions
+## Analytical Questions
 
 ### 1. How does game price affect popularity and engagement?
 
@@ -53,7 +53,7 @@ We combine:
 
 - RAWG: `rating`, `ratings_count`, `suggestions_count`
 
-👉 Goal: Identify high-quality but less popular (hidden gem) games
+Goal: Identify high-quality but less popular (hidden gem) games
 
 ---
 
@@ -63,7 +63,8 @@ We combine:
 
 - RAWG: `platforms`
 - Steam: `average`, `median`
-- ***
+
+---
 
 ### 4. Do higher Metacritic scores lead to higher popularity?
 
@@ -81,17 +82,17 @@ We combine:
 - RAWG: `genres`, `released`
 - Steam: `release_date`
 
-👉 Measure:
+Measure:
 
 - Number of games per genre per year
 
 ---
 
-## 📂 Datasets
+## Datasets
 
 We use two main datasets from Kaggle:
 
-### Dataset 1 – Steam Games Dataset
+### Dataset 1 - Steam Games Dataset
 
 - Contains information about games available on Steam
 - Key attributes:
@@ -105,7 +106,7 @@ We use two main datasets from Kaggle:
 
 ---
 
-### Dataset 2 – RAWG Games Dataset
+### Dataset 2 - RAWG Games Dataset
 
 - Contains aggregated game ratings and metadata
 - Key attributes:
@@ -122,82 +123,77 @@ We use two main datasets from Kaggle:
 
 ---
 
-### 🔗 Data Connection
+### Data Connection
 
-Datasets will be connected using:
+Datasets are connected using:
 
 - `name` (game title)
 
-⚠️ Note:
+Note:
 
-- Names may differ slightly → preprocessing required:
+- Names may differ slightly, so preprocessing is required:
   - lowercase conversion
   - removing special characters
   - trimming spaces
 
 ---
 
-## 🧱 Data Modeling
+## Data Modeling
 
-### 🔹 Fact Table
+### Fact Table - FactGame
 
-One row represents:
-
-> A single game with its performance and engagement metrics
+One row represents a single game's measurable performance.
 
 **Measures:**
 
-- `estimated_owners`
-- `peak_ccu`
+- `price`
+- `average_playtime`
+- `median_playtime`
 - `rating`
 - `ratings_count`
 - `suggestions_count`
 
----
-
-### 🔹 Dimensions
-
-- 📅 Date (release year, month)
-- 🎮 Game (name, id)
-- 🏷️ Genre
-- 💻 Platform
-- 💰 Price category (derived: low / medium / high)
+**Foreign keys:** `game_id`, `date_id`
 
 ---
 
-### ⭐ Star Schema
+### Dimensions
 
-- Fact table: Game Performance
-- Dimension tables:
-  - Game
-  - Date
-  - Genre
-  - Platform
-  - Price Category
+- **DimDate** - `date_id`, `release_date`, `year`, `month`
+- **DimGame** - `game_id`, `steam_name`, `rawg_name`, `matched_name`, `pc_only`
+- **DimGenre** - `genre_id`, `genre_name`
+- **BridgeGameGenre** - `game_id`, `genre_id` (resolves the many-to-many between games and genres)
 
 ---
 
-## ⚙️ Data Processing Pipeline
+### Star Schema
 
-Implemented in Python.
 
-### 🔄 Data Transformation
+- Fact table: FactGame
+- Dimension tables: DimGame, DimDate, DimGenre
+- Bridge table: BridgeGameGenre
+
+---
+
+## Data Processing Pipeline
+
+Implemented in Python (pandas). See `PIPELINE.md` for the full walkthrough.
+
+### Data Transformation
 
 - Select relevant columns
 - Convert data types (dates, numeric)
-- Create derived features:
-  - release year
-  - price categories
+- Create derived features (release year, release month, `pc_only`)
 
 ---
 
-### 🔗 Data Integration
+### Data Integration
 
-- Merge Steam and RAWG datasets using cleaned game names
+- Merge Steam and RAWG datasets using normalized game names
 
 ---
 
-### 🧹 Data Cleaning
+### Data Cleaning
 
 - Handle missing values
 - Normalize inconsistent naming
@@ -205,14 +201,26 @@ Implemented in Python.
 
 ---
 
-### 📤 Output
+### Output
 
-- Clean dataset structured in star schema format
-- Ready for Tableau
+The pipeline produces a flat cleaned table and the star-schema split:
+
+- `output/matched_clean.csv` - cleaned, merged flat table
+- `output/star/fact_game.csv`
+- `output/star/dim_game.csv`
+- `output/star/dim_date.csv`
+- `output/star/dim_genre.csv`
+- `output/star/bridge_game_genre.csv`
+
+Run with:
+
+```bash
+.venv/bin/python main.py
+```
 
 ---
 
-## 📊 Data Analytics (Tableau)
+## Data Analytics (Tableau)
 
 Dashboard will include:
 
@@ -224,13 +232,13 @@ Dashboard will include:
 
 ---
 
-## 💡 Key Insights
+## Key Insights
 
 [TO BE FILLED AFTER ANALYSIS]
 
 ---
 
-## 🛠️ Tools & Technologies
+## Tools & Technologies
 
 - Python (Pandas, NumPy)
 - Tableau
@@ -238,9 +246,9 @@ Dashboard will include:
 
 ---
 
-## 📅 Timeline & Task Assignment
+## Timeline & Task Assignment
 
-### Week 1 – Data Modeling
+### Week 1 - Data Modeling
 
 **Tasks:**
 
@@ -254,7 +262,7 @@ Dashboard will include:
 
 ---
 
-### Week 2 – Data Processing Pipeline
+### Week 2 - Data Processing Pipeline
 
 **Tasks:**
 
@@ -269,7 +277,7 @@ Dashboard will include:
 
 ---
 
-### Week 3 – Dashboard & Visualization
+### Week 3 - Dashboard & Visualization
 
 **Tasks:**
 
@@ -297,4 +305,4 @@ Dashboard will include:
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
