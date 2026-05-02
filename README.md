@@ -66,16 +66,7 @@ Goal: Identify high-quality but less popular (hidden gem) games
 
 ---
 
-### 4. Do higher Metacritic scores lead to higher popularity?
-
-**Columns used:**
-
-- RAWG: `metacritic`
-- Steam: `twitch`
-
----
-
-### 5. Which game genres have grown the most over time?
+### 4. Which game genres have grown the most over time?
 
 **Columns used:**
 
