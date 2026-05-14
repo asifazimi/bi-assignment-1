@@ -1,0 +1,5 @@
+Steam (123k games) — price, owners, reviews, playtime, genres, developers, release date ... etc
+https://www.kaggle.com/datasets/fronkongames/steam-games-dataset
+
+RAWG (890k games) — user ratings, ESRB age rating, Twitch/YouTube stats, console platforms ... etc
+https://www.kaggle.com/datasets/atalaydenknalbant/rawg-games-dataset
