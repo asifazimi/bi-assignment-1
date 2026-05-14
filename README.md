@@ -85,6 +85,8 @@ We use two main datasets from Kaggle:
 
 ### Dataset 1 - Steam Games Dataset
 
+https://www.kaggle.com/datasets/fronkongames/steam-games-dataset
+
 - Contains information about games available on Steam
 - Key attributes:
   - `app_id`
@@ -98,6 +100,8 @@ We use two main datasets from Kaggle:
 ---
 
 ### Dataset 2 - RAWG Games Dataset
+
+https://www.kaggle.com/datasets/atalaydenknalbant/rawg-games-dataset
 
 - Contains aggregated game ratings and metadata
 - Key attributes:
@@ -226,7 +230,7 @@ Dashboard will include:
 
 ## Key Insights
 
-[TO BE FILLED AFTER ANALYSIS]
+Please see the video game report pdf file
 
 ---
 
@@ -234,7 +238,6 @@ Dashboard will include:
 
 - Python (Pandas, NumPy)
 - Tableau
-- GitHub / GitLab
 
 ---
 
@@ -294,7 +297,3 @@ Dashboard will include:
 - Prepare presentation & report
 
 **All members involved**
-
----
-
-## Repository Structure
