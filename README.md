@@ -16,7 +16,7 @@ This project is part of the _Business Intelligence 1_ course at the University o
 
 The goal is to go through the full BI pipeline:
 
-- Define analytical questions (Completed)
+- Define analytical questions
 - Design ER model (3NF) and Star Schema
 - Build a data processing pipeline
 - Create a Tableau dashboard
