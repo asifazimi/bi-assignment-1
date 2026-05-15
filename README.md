@@ -163,7 +163,7 @@ One row represents a single game's measurable performance.
 
 ### Star Schema
 
-[Star Schema](star-schema-er/star.png)
+![Star Schema](star-schema-er/star.png)
 
 - Fact table: FactGame
 - Dimension tables: DimGame, DimDate, DimGenre
